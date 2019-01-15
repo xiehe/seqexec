@@ -1,7 +1,6 @@
 var seqexec = {
     config: {
-        time: 200,  // 每隔200毫秒检测一次
-        // steps: 2    // 共有要执行2步骤
+        time: 200  // 每隔200毫秒检测一次
     },
     close: false,   // 关闭检测
     stepDone: 0,    // 当前完成的步骤
@@ -10,7 +9,7 @@ var seqexec = {
     when: function(fn) {
         let step = 1;
         this._fns[step] = fn;
-        return this
+        return this;
     },
     then: function(fn) {
         let step;
@@ -18,13 +17,13 @@ var seqexec = {
             step = i;
         }
         this._fns[parseInt(step)+1] = fn;
-        return this
+        return this;
     },
     // 处理执行,定期检测
     start: function() {
         let step = 1;
         this._runAndDetect(step);
-        return this
+        return this;
     },
     next: function() {
         // 是否有下一步未执行的函数
@@ -33,13 +32,13 @@ var seqexec = {
             step = i;
         }
         if (this.stepDone >= step) {
-            return this
+            return this;
         }
         this._runAndDetect(parseInt(this.stepDone) + 1);
-        return this
+        return this;
     },
     _runAndDetect: function(step) {
-        let ths = this
+        let ths = this;
         // 执行第一个函数
         this._fns[step](step);
         // 定时检测执行状态
