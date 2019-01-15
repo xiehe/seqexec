@@ -62,3 +62,6 @@ seqexec.when(function(step){
 </script>
 </html>
 ```
+
+## LICENSE
+MIT
