@@ -12,7 +12,7 @@ seqexec.when(function(step){
 }).then(function(step){
     ...
     // 下一步我不想检测执行了
-    seqexec.close = true;
+    seqexec.close();
     ...
 }).start();
 ```
