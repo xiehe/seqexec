@@ -2,7 +2,11 @@ var seqexec = {
     config: {
         time: 200  // 每隔200毫秒检测一次
     },
-    close: false,   // 关闭检测
+    // 关闭检测
+    close: function(){
+        this._close = true;
+    },
+    _close: false,
     stepDone: 0,    // 当前完成的步骤
     _fns: {},       // 函数队列
     // 结构入队列
@@ -43,7 +47,7 @@ var seqexec = {
         this._fns[step](step);
         // 定时检测执行状态
         let seqInterval = setInterval(function(){
-            if (ths.close) {
+            if (ths._close) {
                 clearInterval(seqInterval);
             }
             if (ths.stepDone == step) {
